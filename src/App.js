@@ -11,6 +11,7 @@ import { getDashboardData } from './redux/actions';
 function App() {
   const dispatch = useDispatch();
   const dashboardData = useSelector(state => state.dashboardData)
+  const {dboardData} = dashboardData;
 
   useEffect(()=>{
     dispatch(getDashboardData())
@@ -22,8 +23,22 @@ function App() {
     <Container maxW={'container.md'}>
       <Box  as='h1' fontSize='22px' fontWeight='600' pb='24px' paddingTop='40px'>Main metrics</Box>
       <PeriodTab activeCell={3}/>
-      <SummaryBoard />
-      <DashboardDetails />
+      {
+
+      dboardData ?
+      (
+        <>
+          <SummaryBoard 
+            errors={dboardData?.data[0].errors_yesterday} 
+            zeroes={dboardData?.data[0].zeroes_yesterday}
+            timeouts={dboardData?.data[0].timeout_yesterday}
+            errors_code_listings={dboardData?.errors_yesterday} 
+          />
+          <DashboardDetails />        
+        </>
+      ) 
+        :null
+      }
     </Container>
   );
 }

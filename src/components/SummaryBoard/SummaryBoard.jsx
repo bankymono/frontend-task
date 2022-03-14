@@ -1,28 +1,28 @@
 import { Box, Circle, Square, Text } from '@chakra-ui/react'
 import React from 'react'
 
-const SummaryBoard = () => {
+const SummaryBoard = ({errors,zeroes,timeouts,errors_code_listings}) => {
   return (
       <Box>
           <Box display={'flex'} justifyContent={'space-between'} mb='15px'>
               <Box display='flex' >
                   <Circle mt='8px' mr='8px' bg='#8BC34A' width='10px' height='10px' />
                   <Box>
-                      <Box fontWeight={'600'}>Errors: <span>0,12%</span> </Box>
+                      <Box fontWeight={'600'}>Errors: <span>{errors.toFixed(2)}%</span> </Box>
                       <Box color='#A0B0B9' fontSize={'12px'}>Average: <span>0,11%</span> </Box>
                   </Box>
               </Box>
               <Box display='flex' >
                   <Circle mt='8px' mr='8px' bg='#8BC34A' width='10px' height='10px' />
                   <Box>
-                      <Box fontWeight={'600'}>Zeroes: <span>5,12%</span> </Box>
+                      <Box fontWeight={'600'}>Zeroes: <span>{zeroes.toFixed(2)}%</span> </Box>
                       <Box color='#A0B0B9' fontSize={'12px'}>Average: <span>0,11%</span> </Box>
                   </Box>
               </Box>
               <Box display='flex' >
                   <Circle mt='8px' mr='8px' bg='#8BC34A' width='10px' height='10px' />
                   <Box>
-                      <Box fontWeight={'600'}>Timeouts: <span>0,12%</span> </Box>
+                      <Box fontWeight={'600'}>Timeouts: <span>{timeouts.toFixed(2)}%</span> </Box>
                       <Box color='#A0B0B9' fontSize={'12px'}>Average: <span>0,11%</span> </Box>
                   </Box>
               </Box>
