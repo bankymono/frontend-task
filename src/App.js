@@ -1,24 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import { Box, Container } from '@chakra-ui/react';
+import PeriodTab from './components/PeriodTab/PeriodTab';
+import SummaryBoard from './components/SummaryBoard/SummaryBoard';
+import DashboardDetails from './components/DashboardDetails/DashboardDetails';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getDashboardData } from './redux/actions';
 
 function App() {
+  const dispatch = useDispatch();
+  const dashboardData = useSelector(state => state.dashboardData)
+
+  useEffect(()=>{
+    dispatch(getDashboardData())
+  },[dispatch])
+
+  console.log('dashboard data',dashboardData)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxW={'container.md'}>
+      <Box  as='h1' fontSize='22px' fontWeight='600' pb='24px' paddingTop='40px'>Main metrics</Box>
+      <PeriodTab activeCell={3}/>
+      <SummaryBoard />
+      <DashboardDetails />
+    </Container>
   );
 }
 
